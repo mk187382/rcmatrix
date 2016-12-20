@@ -4,6 +4,8 @@
 int main(int argc, char* argv[])
 {
 	try {
+                cout << endl << endl;
+            
 		matrix a(3, 3);
 		a.load("A.dat");
 		matrix b(3, 3);
@@ -14,8 +16,6 @@ int main(int argc, char* argv[])
 		cout << a*b << endl;
 		matrix c(3, 3);
 		a *= b;
-		cout << "MNOZYMY b*a\n";
-		cout << a << endl;
 
 		matrix x(3, 3, 1.0);
 		matrix y(3, 3, 1.0, 2.0);
@@ -32,22 +32,36 @@ int main(int argc, char* argv[])
 		z = x;
 
 		z(0, 0) = 3.9999;
-		cout << "x(0,0) = " << z(0, 0) << endl;
-		cout << "x(z,0) = " << x(0, 0) << endl;
+                cout << "Set z(0, 0) = 3.9999" << endl;
+                
+		cout << "Check: z(0,0) = " << z(0, 0) << endl << "\nz = \n" << z << endl;
+		cout << "x(0,0) = " << x(0, 0) << endl;
+                
+                cout << endl << endl;
 	}
 	catch (IndexOutOfRange&)
 	{
 		cout << "Index Out of Range" << endl;
+		cout << "BLAD->OBJEKT MATRIX(DREF)-PODANE INDEKSY KOMORKI NIE NALEZA DO ZAKRESU TEGO OBIEKTU\n";
+                
 	}
-	catch (WrongDimension)
+	catch (WrongDimension&)
 	{
-		cout << "Wrong Matrix Dimensions" << endl;
+		cout << "BLAD->OBIEKT MATRIX-NIE MOZNA DODAC MACIERZY O DWOCH ROZNYCH ROZMIARACH\n";
+	}
+        catch (WrongDimensionMultiplication&)
+	{
+		cout << "BLAD->OBIEKT MATRIX-NIE MOZNA POMNOZYC TYCH MACIERZY\n";
+		cout << "MACIERZ A MUSI MIEC TYLE KOLUMN CO MACIERZ B WIERSZY\n";
+	}
+        catch (FileOpenError&)
+	{
+		cout << "BLAD->OBJEKT PLIK-PLIK NIE ISTNIEJE LUB DOSTEP DO ODCZYTU PLIKU JEST ZABRONIONY\n";
 	}
 	catch (bad_alloc)
 	{
 		cout << "Out of Memory" << endl;
 	}
-system("PAUSE");
 return 0;
 }
 

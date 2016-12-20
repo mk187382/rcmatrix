@@ -23,7 +23,7 @@ public:
 	matrix(unsigned int _row, unsigned int _col);
 	matrix(unsigned int _row, unsigned int _col, double _diagonal);
 	matrix(unsigned int _row, unsigned int _col, double _diagonal, double _fill);
-	matrix(matrix& otherMatrix);
+	matrix(const matrix& otherMatrix);
 	matrix(const char* fileName);
 	~matrix();
 
@@ -33,18 +33,18 @@ public:
 	double operator()(unsigned int x, unsigned int y) const;
 	dref operator()(unsigned int x, unsigned int y);
 
-	matrix operator+(matrix& a);
-	matrix operator-(matrix& a);
-	matrix operator*(matrix& a);
-	matrix operator=(matrix& a);
+	matrix operator+(const matrix& a);
+	matrix operator-(const matrix& a);
+	matrix operator*(const matrix& a) const;
 
-	matrix operator+=(matrix& a);
-	matrix operator-=(matrix& a);
-	matrix operator*=(matrix& a);
+        matrix& operator=(const matrix& a);
+	matrix& operator+=(const matrix& a);
+	matrix& operator-=(const matrix& a);
+	matrix& operator*=(const matrix& a);
 
 	void load(const char* fileName);
 
-	friend bool operator==(matrix& a, matrix& b);
+	friend bool operator==(const matrix& a, const matrix& b);
 	friend ostream& operator<<(ostream& out, const matrix& mtx);
 
 };
