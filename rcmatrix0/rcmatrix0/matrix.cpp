@@ -10,7 +10,15 @@ matrix::rcmatrix::rcmatrix(unsigned int _row, unsigned int _col)
 	col = _col;
 	nref = 1;
 	
-        data = (double**)new double*[row];
+	try 
+	{
+		data = (double**)new double*[row];
+	}
+	catch (bad_alloc& a) {
+		delete [] data;
+		cout << "Out of Memory; memory freed." << endl;
+
+	}
         for (unsigned int i = 0; i<row; i++)
         {
                 data[i] = (double*) new double[col];
@@ -26,8 +34,15 @@ matrix::rcmatrix::rcmatrix(unsigned int _row, unsigned int _col, double _diagona
 	diagonal = _diagonal;
 	nref = 1;
 	
-        data = (double**)new double*[row];
-        for (unsigned int i = 0; i<row; i++)
+	try
+	{
+		data = (double**)new double*[row];
+	}
+	catch (bad_alloc& a) {
+		delete[] data;
+		cout << "Out of Memory; memory freed." << endl;
+
+	}        for (unsigned int i = 0; i<row; i++)
         {
                 data[i] = (double*) new double[col];
 
@@ -51,8 +66,15 @@ matrix::rcmatrix::rcmatrix(unsigned int _row, unsigned int _col, double _diagona
 	fill = _fill;
 	nref = 1;
 
-        data = (double**)new double*[row];
-        for (unsigned int i = 0; i<row; i++)
+	try
+	{
+		data = (double**)new double*[row];
+	}
+	catch (bad_alloc& a) {
+		delete[] data;
+		cout << "Out of Memory; memory freed." << endl;
+
+	}        for (unsigned int i = 0; i<row; i++)
         {
                 data[i] = (double*) new double[col];
 
@@ -72,8 +94,15 @@ matrix::rcmatrix::rcmatrix(unsigned int _row, unsigned int _col, double** _data)
 	nref = 1;
 	row = _row;
 	col = _col;
-        data = (double**)new double*[row];//sprawdzić wyjątek i obsłużyć, zwolnić to co się zaalokowało
-        
+	try
+	{
+		data = (double**)new double*[row];
+	}
+	catch (bad_alloc& a) {
+		delete[] data;
+		cout << "Out of Memory; memory freed." << endl;
+
+	}
         for (unsigned int i = 0; i<row; i++)
         {
                 data[i] = (double*) new double[col];
